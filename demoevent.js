@@ -36,7 +36,6 @@ obj.addListener("marketOpen", fun1)   //callback
 obj.addListener("marketOpen", fun2)
 obj.emit('marketOpen')
 
-
 obj.removeListener("marketOpen", fun2)
 obj.emit('marketOpen')
 obj.removeAllListeners("marketOpen")
