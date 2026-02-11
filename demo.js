@@ -91,4 +91,41 @@
 
 //SERVE HTML FILE BASED ON THE ROUTE
 const http = require('http')
+const fs = require('fs')
 
+const server = http.createServer((req, res) => {
+
+    if (req.url === '/' || req.url === '/home') {
+        fs.readFile('home.html', (err, data) => {
+            if (err) {
+                res.writeHead(404)
+                res.end("Error Loading File")
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' })
+                res.end(data)
+            }
+        })
+    }
+
+    else if (req.url === '/about') {
+        fs.readFile('about.html', (err, data) => {
+            if (err) {
+                res.writeHead(404)
+                res.end("Error Loading File")
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' })
+                res.end(data)
+            }
+        })
+    }
+
+    else {
+        res.writeHead(404)
+        res.end("Page Not Found")
+    }
+
+})
+
+server.listen(3000, () => {
+    console.log("The server is running")
+})
