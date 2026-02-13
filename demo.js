@@ -118,6 +118,17 @@ const server = http.createServer((req, res) => {
             }
         })
     }
+    else if (req.url === '/contact') {
+        fs.readFile('contact.html', (err, data) => {
+            if (err) {
+                res.writeHead(404)
+                res.end("Error Loading File")
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' })
+                res.end(data)
+            }
+        })
+    }
 
     else {
         res.writeHead(404)
